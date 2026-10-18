@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.venv/
+venv/
+
+# FalkorDB embedded data
+*.rdb
+*.rdb.settings
+*.aof
+dump.rdb
+data/
+.falkordb/
+
+# env / secrets
+.env
+
+# SUNDER output (patched configs keep your secrets unless --redact is used)
+sunder-out/
+
+# editor / os
+.DS_Store
+.idea/
+.vscode/

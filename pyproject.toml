@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sunder"
+version = "0.1.0"
+description = "SUNDER — autonomous minimum-cut attack-path remediation for the AI agent mesh, on FalkorDB."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "falkordb>=1.7.0",
+    "falkordblite>=0.10.0",
+    "mcp>=1.9.0",
+    "fastapi>=0.115.0",
+    "uvicorn[standard]>=0.30.0",
+    "python-dotenv>=1.0.0",
+    "sse-starlette>=2.0.0",
+]
+
+[project.optional-dependencies]
+llm = ["openai>=1.40.0"]
+dev = ["pytest>=8.0.0", "networkx>=3.0"]
+
+[project.scripts]
+sunder = "sunder.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["sunder*"]
+
+[tool.setuptools.package-data]
+sunder = ["../web/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

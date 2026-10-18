@@ -1,0 +1,647 @@
+{
+  "proof": {
+    "method": "patched configs re-ingested into a fresh graph, attack paths recounted",
+    "paths_before": 34,
+    "paths_after": 0,
+    "sealed": true,
+    "config_edits": 6,
+    "outside_config_steps": 0
+  },
+  "actions": [
+    {
+      "edge": {
+        "src": "agent:cursor_mcp",
+        "rel": "CAN_INVOKE",
+        "dst": "cursor_mcp:aws"
+      },
+      "kind": "remove_server",
+      "config": "cursor_mcp",
+      "server": "aws",
+      "key": null,
+      "text": "In `cursor_mcp`: remove the `aws` MCP server (or move it into a separate, unprivileged agent).",
+      "cost": 5,
+      "applied_to_config": true
+    },
+    {
+      "edge": {
+        "src": "agent:cursor_mcp",
+        "rel": "CAN_INVOKE",
+        "dst": "cursor_mcp:github"
+      },
+      "kind": "remove_server",
+      "config": "cursor_mcp",
+      "server": "github",
+      "key": null,
+      "text": "In `cursor_mcp`: remove the `github` MCP server (or move it into a separate, unprivileged agent).",
+      "cost": 5,
+      "applied_to_config": true
+    },
+    {
+      "edge": {
+        "src": "agent:claude_desktop",
+        "rel": "CAN_INVOKE",
+        "dst": "claude_desktop:desktop-commander"
+      },
+      "kind": "remove_server",
+      "config": "claude_desktop",
+      "server": "desktop-commander",
+      "key": null,
+      "text": "In `claude_desktop`: remove the `desktop-commander` MCP server (or move it into a separate, unprivileged agent).",
+      "cost": 5,
+      "applied_to_config": true
+    },
+    {
+      "edge": {
+        "src": "agent:claude_desktop",
+        "rel": "CAN_INVOKE",
+        "dst": "claude_desktop:postgres"
+      },
+      "kind": "remove_server",
+      "config": "claude_desktop",
+      "server": "postgres",
+      "key": null,
+      "text": "In `claude_desktop`: remove the `postgres` MCP server (or move it into a separate, unprivileged agent).",
+      "cost": 5,
+      "applied_to_config": true
+    },
+    {
+      "edge": {
+        "src": "agent:claude_desktop",
+        "rel": "CAN_INVOKE",
+        "dst": "claude_desktop:github"
+      },
+      "kind": "remove_server",
+      "config": "claude_desktop",
+      "server": "github",
+      "key": null,
+      "text": "In `claude_desktop`: remove the `github` MCP server (or move it into a separate, unprivileged agent).",
+      "cost": 5,
+      "applied_to_config": true
+    },
+    {
+      "edge": {
+        "src": "agent:claude_desktop",
+        "rel": "CAN_INVOKE",
+        "dst": "claude_desktop:filesystem"
+      },
+      "kind": "remove_server",
+      "config": "claude_desktop",
+      "server": "filesystem",
+      "key": null,
+      "text": "In `claude_desktop`: remove the `filesystem` MCP server (or move it into a separate, unprivileged agent).",
+      "cost": 5,
+      "applied_to_config": true
+    }
+  ],
+  "report": {
+    "target": "crown-jewels",
+    "entry_points": [
+      "untrusted:claude_desktop:brave-search",
+      "untrusted:claude_desktop:fetch",
+      "untrusted:claude_desktop:github",
+      "untrusted:claude_desktop:slack",
+      "untrusted:cursor_mcp:github",
+      "untrusted:cursor_mcp:puppeteer"
+    ],
+    "max_flow": 30,
+    "minimum_cut_size": 6,
+    "cut_cost": 30,
+    "fewest_edge_cut_size": 5,
+    "fewest_edge_cut_cost": 120,
+    "fewest_edge_cut": [
+      {
+        "src": "agent:cursor_mcp",
+        "rel": "CAN_INVOKE",
+        "dst": "cursor_mcp:aws"
+      },
+      {
+        "src": "cred:GITHUB_PERSONAL_ACCESS_TOKEN:a75fda89",
+        "rel": "GRANTS",
+        "dst": "res:source-repos"
+      },
+      {
+        "src": "agent:claude_desktop",
+        "rel": "CAN_INVOKE",
+        "dst": "claude_desktop:desktop-commander"
+      },
+      {
+        "src": "agent:claude_desktop",
+        "rel": "CAN_INVOKE",
+        "dst": "claude_desktop:postgres"
+      },
+      {
+        "src": "agent:claude_desktop",
+        "rel": "CAN_INVOKE",
+        "dst": "claude_desktop:filesystem"
+      }
+    ],
+    "fewest_edge_max_flow": 5,
+    "optimality": "min-cost max-flow = 30 proves no cheaper disconnection exists (max-flow/min-cut theorem); SUNDER found one of cost 30 using 6 edge(s).",
+    "attack_paths_before": [
+      {
+        "source": "untrusted:claude_desktop:fetch",
+        "nodes": [
+          "untrusted:claude_desktop:fetch",
+          "agent:claude_desktop",
+          "claude_desktop:desktop-commander",
+          "res:host-shell",
+          "crown-jewels"
+        ],
+        "hops": 4
+      },
+      {
+        "source": "untrusted:claude_desktop:brave-search",
+        "nodes": [
+          "untrusted:claude_desktop:brave-search",
+          "agent:claude_desktop",
+          "claude_desktop:desktop-commander",
+          "res:host-shell",
+          "crown-jewels"
+        ],
+        "hops": 4
+      },
+      {
+        "source": "untrusted:claude_desktop:github",
+        "nodes": [
+          "untrusted:claude_desktop:github",
+          "agent:claude_desktop",
+          "claude_desktop:filesystem",
+          "res:fs:/Users/dev/.ssh",
+          "crown-jewels"
+        ],
+        "hops": 4
+      },
+      {
+        "source": "untrusted:claude_desktop:slack",
+        "nodes": [
+          "untrusted:claude_desktop:slack",
+          "agent:claude_desktop",
+          "claude_desktop:filesystem",
+          "res:fs:/Users/dev/.ssh",
+          "crown-jewels"
+        ],
+        "hops": 4
+      },
+      {
+        "source": "untrusted:claude_desktop:brave-search",
+        "nodes": [
+          "untrusted:claude_desktop:brave-search",
+          "agent:claude_desktop",
+          "claude_desktop:filesystem",
+          "res:fs:/Users/dev/.ssh",
+          "crown-jewels"
+        ],
+        "hops": 4
+      },
+      {
+        "source": "untrusted:claude_desktop:github",
+        "nodes": [
+          "untrusted:claude_desktop:github",
+          "agent:claude_desktop",
+          "claude_desktop:desktop-commander",
+          "res:host-shell",
+          "crown-jewels"
+        ],
+        "hops": 4
+      },
+      {
+        "source": "untrusted:claude_desktop:slack",
+        "nodes": [
+          "untrusted:claude_desktop:slack",
+          "agent:claude_desktop",
+          "claude_desktop:desktop-commander",
+          "res:host-shell",
+          "crown-jewels"
+        ],
+        "hops": 4
+      },
+      {
+        "source": "untrusted:claude_desktop:fetch",
+        "nodes": [
+          "untrusted:claude_desktop:fetch",
+          "agent:claude_desktop",
+          "claude_desktop:filesystem",
+          "res:fs:/Users/dev/.ssh",
+          "crown-jewels"
+        ],
+        "hops": 4
+      },
+      {
+        "source": "untrusted:cursor_mcp:github",
+        "nodes": [
+          "untrusted:cursor_mcp:github",
+          "agent:cursor_mcp",
+          "cursor_mcp:aws",
+          "cred:AWS_SECRET_ACCESS_KEY:4d6ce3fa",
+          "res:cloud-account",
+          "crown-jewels"
+        ],
+        "hops": 5
+      },
+      {
+        "source": "untrusted:cursor_mcp:github",
+        "nodes": [
+          "untrusted:cursor_mcp:github",
+          "agent:cursor_mcp",
+          "cursor_mcp:github",
+          "cred:GITHUB_PERSONAL_ACCESS_TOKEN:a75fda89",
+          "res:source-repos",
+          "crown-jewels"
+        ],
+        "hops": 5
+      },
+      {
+        "source": "untrusted:claude_desktop:brave-search",
+        "nodes": [
+          "untrusted:claude_desktop:brave-search",
+          "agent:claude_desktop",
+          "claude_desktop:github",
+          "cred:GITHUB_PERSONAL_ACCESS_TOKEN:a75fda89",
+          "res:source-repos",
+          "crown-jewels"
+        ],
+        "hops": 5
+      },
+      {
+        "source": "untrusted:claude_desktop:slack",
+        "nodes": [
+          "untrusted:claude_desktop:slack",
+          "agent:claude_desktop",
+          "claude_desktop:desktop-commander",
+          "claude_desktop:filesystem",
+          "res:fs:/Users/dev/.ssh",
+          "crown-jewels"
+        ],
+        "hops": 5
+      },
+      {
+        "source": "untrusted:claude_desktop:fetch",
+        "nodes": [
+          "untrusted:claude_desktop:fetch",
+          "agent:claude_desktop",
+          "claude_desktop:postgres",
+          "cred:arg2-url-credentials:d71eeed4",
+          "res:database:db.internal/prod",
+          "crown-jewels"
+        ],
+        "hops": 5
+      },
+      {
+        "source": "untrusted:claude_desktop:fetch",
+        "nodes": [
+          "untrusted:claude_desktop:fetch",
+          "agent:claude_desktop",
+          "claude_desktop:desktop-commander",
+          "claude_desktop:filesystem",
+          "res:fs:/Users/dev/.ssh",
+          "crown-jewels"
+        ],
+        "hops": 5
+      },
+      {
+        "source": "untrusted:claude_desktop:brave-search",
+        "nodes": [
+          "untrusted:claude_desktop:brave-search",
+          "agent:claude_desktop",
+          "claude_desktop:desktop-commander",
+          "claude_desktop:filesystem",
+          "res:fs:/Users/dev/.ssh",
+          "crown-jewels"
+        ],
+        "hops": 5
+      },
+      {
+        "source": "untrusted:claude_desktop:slack",
+        "nodes": [
+          "untrusted:claude_desktop:slack",
+          "agent:claude_desktop",
+          "claude_desktop:github",
+          "cred:GITHUB_PERSONAL_ACCESS_TOKEN:a75fda89",
+          "res:source-repos",
+          "crown-jewels"
+        ],
+        "hops": 5
+      },
+      {
+        "source": "untrusted:cursor_mcp:github",
+        "nodes": [
+          "untrusted:cursor_mcp:github",
+          "agent:cursor_mcp",
+          "cursor_mcp:aws",
+          "cred:AWS_ACCESS_KEY_ID:d45c067f",
+          "res:cloud-account",
+          "crown-jewels"
+        ],
+        "hops": 5
+      },
+      {
+        "source": "untrusted:cursor_mcp:puppeteer",
+        "nodes": [
+          "untrusted:cursor_mcp:puppeteer",
+          "agent:cursor_mcp",
+          "cursor_mcp:aws",
+          "cred:AWS_ACCESS_KEY_ID:d45c067f",
+          "res:cloud-account",
+          "crown-jewels"
+        ],
+        "hops": 5
+      },
+      {
+        "source": "untrusted:claude_desktop:brave-search",
+        "nodes": [
+          "untrusted:claude_desktop:brave-search",
+          "agent:claude_desktop",
+          "claude_desktop:postgres",
+          "cred:arg2-url-credentials:d71eeed4",
+          "res:database:db.internal/prod",
+          "crown-jewels"
+        ],
+        "hops": 5
+      },
+      {
+        "source": "untrusted:cursor_mcp:puppeteer",
+        "nodes": [
+          "untrusted:cursor_mcp:puppeteer",
+          "agent:cursor_mcp",
+          "cursor_mcp:aws",
+          "cred:AWS_SECRET_ACCESS_KEY:4d6ce3fa",
+          "res:cloud-account",
+          "crown-jewels"
+        ],
+        "hops": 5
+      },
+      {
+        "source": "untrusted:claude_desktop:slack",
+        "nodes": [
+          "untrusted:claude_desktop:slack",
+          "agent:claude_desktop",
+          "claude_desktop:postgres",
+          "cred:arg2-url-credentials:d71eeed4",
+          "res:database:db.internal/prod",
+          "crown-jewels"
+        ],
+        "hops": 5
+      },
+      {
+        "source": "untrusted:claude_desktop:fetch",
+        "nodes": [
+          "untrusted:claude_desktop:fetch",
+          "agent:claude_desktop",
+          "claude_desktop:github",
+          "cred:GITHUB_PERSONAL_ACCESS_TOKEN:a75fda89",
+          "res:source-repos",
+          "crown-jewels"
+        ],
+        "hops": 5
+      },
+      {
+        "source": "untrusted:claude_desktop:github",
+        "nodes": [
+          "untrusted:claude_desktop:github",
+          "agent:claude_desktop",
+          "claude_desktop:github",
+          "cred:GITHUB_PERSONAL_ACCESS_TOKEN:a75fda89",
+          "res:source-repos",
+          "crown-jewels"
+        ],
+        "hops": 5
+      },
+      {
+        "source": "untrusted:claude_desktop:github",
+        "nodes": [
+          "untrusted:claude_desktop:github",
+          "agent:claude_desktop",
+          "claude_desktop:postgres",
+          "cred:arg2-url-credentials:d71eeed4",
+          "res:database:db.internal/prod",
+          "crown-jewels"
+        ],
+        "hops": 5
+      },
+      {
+        "source": "untrusted:claude_desktop:github",
+        "nodes": [
+          "untrusted:claude_desktop:github",
+          "agent:claude_desktop",
+          "claude_desktop:desktop-commander",
+          "claude_desktop:filesystem",
+          "res:fs:/Users/dev/.ssh",
+          "crown-jewels"
+        ],
+        "hops": 5
+      },
+      {
+        "source": "untrusted:cursor_mcp:puppeteer",
+        "nodes": [
+          "untrusted:cursor_mcp:puppeteer",
+          "agent:cursor_mcp",
+          "cursor_mcp:github",
+          "cred:GITHUB_PERSONAL_ACCESS_TOKEN:a75fda89",
+          "res:source-repos",
+          "crown-jewels"
+        ],
+        "hops": 5
+      },
+      {
+        "source": "untrusted:claude_desktop:slack",
+        "nodes": [
+          "untrusted:claude_desktop:slack",
+          "agent:claude_desktop",
+          "claude_desktop:desktop-commander",
+          "claude_desktop:postgres",
+          "cred:arg2-url-credentials:d71eeed4",
+          "res:database:db.internal/prod",
+          "crown-jewels"
+        ],
+        "hops": 6
+      },
+      {
+        "source": "untrusted:claude_desktop:slack",
+        "nodes": [
+          "untrusted:claude_desktop:slack",
+          "agent:claude_desktop",
+          "claude_desktop:desktop-commander",
+          "claude_desktop:github",
+          "cred:GITHUB_PERSONAL_ACCESS_TOKEN:a75fda89",
+          "res:source-repos",
+          "crown-jewels"
+        ],
+        "hops": 6
+      },
+      {
+        "source": "untrusted:claude_desktop:brave-search",
+        "nodes": [
+          "untrusted:claude_desktop:brave-search",
+          "agent:claude_desktop",
+          "claude_desktop:desktop-commander",
+          "claude_desktop:github",
+          "cred:GITHUB_PERSONAL_ACCESS_TOKEN:a75fda89",
+          "res:source-repos",
+          "crown-jewels"
+        ],
+        "hops": 6
+      },
+      {
+        "source": "untrusted:claude_desktop:github",
+        "nodes": [
+          "untrusted:claude_desktop:github",
+          "agent:claude_desktop",
+          "claude_desktop:desktop-commander",
+          "claude_desktop:github",
+          "cred:GITHUB_PERSONAL_ACCESS_TOKEN:a75fda89",
+          "res:source-repos",
+          "crown-jewels"
+        ],
+        "hops": 6
+      },
+      {
+        "source": "untrusted:claude_desktop:brave-search",
+        "nodes": [
+          "untrusted:claude_desktop:brave-search",
+          "agent:claude_desktop",
+          "claude_desktop:desktop-commander",
+          "claude_desktop:postgres",
+          "cred:arg2-url-credentials:d71eeed4",
+          "res:database:db.internal/prod",
+          "crown-jewels"
+        ],
+        "hops": 6
+      },
+      {
+        "source": "untrusted:claude_desktop:fetch",
+        "nodes": [
+          "untrusted:claude_desktop:fetch",
+          "agent:claude_desktop",
+          "claude_desktop:desktop-commander",
+          "claude_desktop:github",
+          "cred:GITHUB_PERSONAL_ACCESS_TOKEN:a75fda89",
+          "res:source-repos",
+          "crown-jewels"
+        ],
+        "hops": 6
+      },
+      {
+        "source": "untrusted:claude_desktop:fetch",
+        "nodes": [
+          "untrusted:claude_desktop:fetch",
+          "agent:claude_desktop",
+          "claude_desktop:desktop-commander",
+          "claude_desktop:postgres",
+          "cred:arg2-url-credentials:d71eeed4",
+          "res:database:db.internal/prod",
+          "crown-jewels"
+        ],
+        "hops": 6
+      },
+      {
+        "source": "untrusted:claude_desktop:github",
+        "nodes": [
+          "untrusted:claude_desktop:github",
+          "agent:claude_desktop",
+          "claude_desktop:desktop-commander",
+          "claude_desktop:postgres",
+          "cred:arg2-url-credentials:d71eeed4",
+          "res:database:db.internal/prod",
+          "crown-jewels"
+        ],
+        "hops": 6
+      }
+    ],
+    "attack_paths_before_count": 34,
+    "cut": [
+      {
+        "src": "agent:cursor_mcp",
+        "rel": "CAN_INVOKE",
+        "dst": "cursor_mcp:aws"
+      },
+      {
+        "src": "agent:cursor_mcp",
+        "rel": "CAN_INVOKE",
+        "dst": "cursor_mcp:github"
+      },
+      {
+        "src": "agent:claude_desktop",
+        "rel": "CAN_INVOKE",
+        "dst": "claude_desktop:desktop-commander"
+      },
+      {
+        "src": "agent:claude_desktop",
+        "rel": "CAN_INVOKE",
+        "dst": "claude_desktop:postgres"
+      },
+      {
+        "src": "agent:claude_desktop",
+        "rel": "CAN_INVOKE",
+        "dst": "claude_desktop:github"
+      },
+      {
+        "src": "agent:claude_desktop",
+        "rel": "CAN_INVOKE",
+        "dst": "claude_desktop:filesystem"
+      }
+    ],
+    "simulation": {
+      "paths_before": 34,
+      "paths_after": 0,
+      "removed_cost": 30
+    },
+    "verification": {
+      "remaining_paths": 0,
+      "sealed": true
+    },
+    "top_influential": [
+      {
+        "id": "crown-jewels",
+        "name": "all crown-jewel resources",
+        "score": 0.15427
+      },
+      {
+        "id": "agent:claude_desktop",
+        "name": "claude_desktop",
+        "score": 0.05141
+      },
+      {
+        "id": "res:source-repos",
+        "name": "source-repos",
+        "score": 0.05105
+      },
+      {
+        "id": "res:cloud-account",
+        "name": "cloud-account",
+        "score": 0.04645
+      },
+      {
+        "id": "cred:GITHUB_PERSONAL_ACCESS_TOKEN:a75fda89",
+        "name": "GITHUB_PERSONAL_ACCESS_TOKEN (a75fda89)",
+        "score": 0.04631
+      }
+    ],
+    "choke_points": [
+      {
+        "id": "claude_desktop:filesystem",
+        "name": "filesystem",
+        "score": 40.0
+      },
+      {
+        "id": "agent:claude_desktop",
+        "name": "claude_desktop",
+        "score": 38.0
+      },
+      {
+        "id": "claude_desktop:github",
+        "name": "github",
+        "score": 36.0
+      },
+      {
+        "id": "claude_desktop:brave-search",
+        "name": "brave-search",
+        "score": 36.0
+      },
+      {
+        "id": "agent:cursor_mcp",
+        "name": "cursor_mcp",
+        "score": 36.0
+      }
+    ]
+  }
+}

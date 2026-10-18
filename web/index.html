@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SUNDER — minimum-cut remediation for the AI agent mesh</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <header>
+    <h1>SUNDER<span>.</span></h1>
+    <span class="tag">autonomous attack-path remediation · FalkorDB</span>
+    <div class="chips" id="chips"></div>
+  </header>
+  <main>
+    <div id="stage">
+      <canvas id="graph"></canvas>
+      <div id="legend"></div>
+    </div>
+    <aside>
+      <div class="controls">
+        <div class="row">
+          <button id="run">▶ Run SUNDER</button>
+          <button id="seed" class="ghost">Reload graph</button>
+          <label class="ck"><input type="checkbox" id="dry" /> dry-run</label>
+        </div>
+        <div class="hint" id="goal"></div>
+      </div>
+      <div class="trace" id="trace">
+        <div class="hint">Press <b>Run SUNDER</b>. The agent will survey the mesh, enumerate attack paths,
+          compute the minimum edge cut, apply it, and prove the crown jewel is sealed.</div>
+      </div>
+      <div class="report" id="report"></div>
+    </aside>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>

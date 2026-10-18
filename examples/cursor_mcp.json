@@ -1,0 +1,22 @@
+{
+  "mcpServers": {
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": { "GITHUB_PERSONAL_ACCESS_TOKEN": "ghp_EXAMPLE_NOT_A_REAL_TOKEN_0001" }
+    },
+    "puppeteer": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-puppeteer"]
+    },
+    "aws": {
+      "command": "uvx",
+      "args": ["aws-mcp-server"],
+      "env": {
+        "AWS_ACCESS_KEY_ID": "AKIAEXAMPLEEXAMPLE1",
+        "AWS_SECRET_ACCESS_KEY": "EXAMPLE_SECRET_NOT_REAL",
+        "AWS_REGION": "ap-south-1"
+      }
+    }
+  }
+}

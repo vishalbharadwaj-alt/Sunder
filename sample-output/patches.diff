@@ -1,0 +1,91 @@
+--- a/claude_desktop.json
++++ b/claude_desktop.json
+@@ -1,24 +1,5 @@
+ {
+   "mcpServers": {
+-    "filesystem": {
+-      "command": "npx",
+-      "args": [
+-        "-y",
+-        "@modelcontextprotocol/server-filesystem",
+-        "/Users/dev/projects",
+-        "/Users/dev/.ssh"
+-      ]
+-    },
+-    "github": {
+-      "command": "npx",
+-      "args": [
+-        "-y",
+-        "@modelcontextprotocol/server-github"
+-      ],
+-      "env": {
+-        "GITHUB_PERSONAL_ACCESS_TOKEN": "<REDACTED>"
+-      }
+-    },
+     "fetch": {
+       "command": "uvx",
+       "args": [
+@@ -35,14 +16,6 @@
+         "BRAVE_API_KEY": "<REDACTED>"
+       }
+     },
+-    "postgres": {
+-      "command": "npx",
+-      "args": [
+-        "-y",
+-        "@modelcontextprotocol/server-postgres",
+-        "<REDACTED>"
+-      ]
+-    },
+     "slack": {
+       "command": "npx",
+       "args": [
+@@ -53,13 +26,6 @@
+         "SLACK_BOT_TOKEN": "<REDACTED>",
+         "SLACK_TEAM_ID": "T0EXAMPLE"
+       }
+-    },
+-    "desktop-commander": {
+-      "command": "npx",
+-      "args": [
+-        "-y",
+-        "@wonderwhy-er/desktop-commander"
+-      ]
+     }
+   }
+ }
+--- a/cursor_mcp.json
++++ b/cursor_mcp.json
+@@ -1,32 +1,11 @@
+ {
+   "mcpServers": {
+-    "github": {
+-      "command": "npx",
+-      "args": [
+-        "-y",
+-        "@modelcontextprotocol/server-github"
+-      ],
+-      "env": {
+-        "GITHUB_PERSONAL_ACCESS_TOKEN": "<REDACTED>"
+-      }
+-    },
+     "puppeteer": {
+       "command": "npx",
+       "args": [
+         "-y",
+         "@modelcontextprotocol/server-puppeteer"
+       ]
+-    },
+-    "aws": {
+-      "command": "uvx",
+-      "args": [
+-        "aws-mcp-server"
+-      ],
+-      "env": {
+-        "AWS_ACCESS_KEY_ID": "<REDACTED>",
+-        "AWS_SECRET_ACCESS_KEY": "<REDACTED>",
+-        "AWS_REGION": "ap-south-1"
+-      }
+     }
+   }
+ }

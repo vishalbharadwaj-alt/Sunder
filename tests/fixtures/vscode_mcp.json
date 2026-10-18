@@ -1,0 +1,11 @@
+{
+  "servers": {
+    "notes-db": { "command": "uvx", "args": ["mcp-server-sqlite", "--db-path", "/home/dev/notes.sqlite3"] },
+    "pg": { "command": "npx", "args": ["-y", "@modelcontextprotocol/server-postgres", "postgresql://app:s3cret@db.internal:5432/prod"] },
+    "docs-fs": { "command": "npx", "args": ["-y", "@modelcontextprotocol/server-filesystem", "/home/dev/.ssh", "/home/dev/projects"] },
+    "remote-crm": { "url": "https://mcp.hubspot.com/sse", "headers": { "Authorization": "Bearer abc123" } },
+    "term": { "command": "npx", "args": ["-y", "desktop-commander"] },
+    "weather": { "command": "node", "args": ["weather.js"], "env": { "WEATHER_API_KEY": "${WEATHER_API_KEY}", "UNITS": "metric" } },
+    "off": { "command": "npx", "args": ["server-github"], "disabled": true }
+  }
+}

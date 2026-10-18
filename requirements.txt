@@ -1,0 +1,21 @@
+# --- core graph ---
+falkordb>=1.7.0
+falkordblite>=0.10.0        # embedded FalkorDB (no Docker needed)
+
+# --- agent tool protocol ---
+mcp>=1.9.0
+
+# --- web / api ---
+fastapi>=0.115.0
+uvicorn[standard]>=0.30.0
+pydantic>=2.7.0
+python-dotenv>=1.0.0
+sse-starlette>=2.0.0
+
+# --- optional dev ---
+# pytest>=8.0.0
+# networkx>=3.0          # only for `scripts/benchmark.py --check`
+
+# --- optional LLM planner (falls back to deterministic planner if absent) ---
+# openai>=1.40.0
+# anthropic>=0.40.0

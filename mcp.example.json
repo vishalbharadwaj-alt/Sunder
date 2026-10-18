@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "sunder": {
+      "command": "python",
+      "args": ["-m", "sunder.mcp_server"],
+      "cwd": "/absolute/path/to/Sunder",
+      "env": {
+        "FALKORDB_MODE": "embedded",
+        "GRAPH_NAME": "sunder",
+        "CROWN_JEWEL": "prod-secrets-vault"
+      }
+    }
+  }
+}
