@@ -18,7 +18,7 @@ SUNDER is an agent that reasons over exactly that graph. It:
    *all* of those paths at once, and — crucially —
 3. **acts**: it revokes those edges in the graph and **proves** zero paths remain.
 
-> **Live demo:** https://vishalbharadwaj-alt.github.io/Sunder/ — the built-in mesh is a static snapshot, but
+> **Live demo:** https://vishalbharadwaj-alt.github.io/sunder-graph-analyser/ — the built-in mesh is a static snapshot, but
 > you can drop in **your own `mcp.json`** and the graph is built from it, in your tab (nothing is uploaded).
 > The browser ingest is a port of `sunder/ingest.py`; `tests/test_web_parity.py` checks it produces the same
 > graph and the same minimum cut as the Python/FalkorDB pipeline. The full engine
