@@ -377,25 +377,6 @@ Copy `.env.example` → `.env`. Key options:
 | `CROWN_JEWEL` | `prod-secrets-vault` | target resource id |
 | `OPENAI_API_KEY` | *(unset)* | enables the LLM planner; otherwise the deterministic planner runs |
 
-## Development timeline and AI-assistance disclosure
-
-Being upfront, per the Graph Hacks rules:
-
-* **Baseline before the event.** The first version of SUNDER (graph schema, synthetic mesh, min-cut
-  engine, MCP server, web UI, MCP-config ingest) was pushed to this repository on **Oct 11, 2026**, before the
-  hackathon window opened on Oct 15.
-* **Work done during the hackathon window (Oct 15-18, 2026).** Replaced the one-shot LLM planner with the
-  observe -> decide -> act `LoopPlanner` with code-enforced guardrails (`tests/test_loop_planner.py`);
-  added in-browser analysis of a visitor's own `mcp.json` (`docs/ingest.js`) with a parity test against the
-  Python pipeline (`tests/test_web_parity.py`); relabelled the static-snapshot demo honestly; added this data-model,
-  query and disclosure documentation.
-* **AI coding assistants.** Claude (Anthropic) was used as a coding assistant, including for the work listed
-  above. The participant reviews and runs the code and is responsible for explaining the graph model, queries
-  and design decisions.
-
-> TODO before submitting (owner): state in one or two sentences which parts of the baseline you wrote
-> yourself and which were AI-assisted, then delete this note.
-
 ## License
 
 MIT.
